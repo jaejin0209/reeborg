@@ -2,6 +2,7 @@ require("./../rur.js");
 require("./../programming_api/reeborg_en.js");
 require("./../programming_api/reeborg_fr.js");
 require("./../programming_api/reeborg_cn.js");
+require("./../programming_api/reeborg_ko.js");
 require("./../programming_api/blockly.js");
 require("./../ui/custom_world_select.js");
 require("./../permalink/permalink.js");
@@ -42,6 +43,13 @@ function update_translations(lang) {
             merge_dicts(RUR.translation, RUR.cn);
             RUR.translation_to_english = RUR.cn_to_en;
             blockly_init_cn();
+            $("#mixed-language-info").hide();
+            break;
+        case "ko":
+            RUR.translation = RUR.ui_ko;
+            merge_dicts(RUR.translation, RUR.ko);
+            RUR.translation_to_english = RUR.ko_to_en;
+            blockly_init_ko();
             $("#mixed-language-info").hide();
             break;
         case "en-fr":
@@ -104,6 +112,11 @@ function update_commands (lang) {
             RUR.reset_definitions = RUR.reset_definitions_cn;
             RUR.library_name = "库";
             RUR.from_import = "from reeborg_cn import *";
+            break;
+        case "ko":
+            RUR.reset_definitions = RUR.reset_definitions_ko;
+            RUR.library_name = "라이브러리";
+            RUR.from_import = "from reeborg_ko import *";
             break;
         case "en":
         case "fr-en":
